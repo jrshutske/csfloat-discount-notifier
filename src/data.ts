@@ -1,6 +1,6 @@
-import { ListingsResponse } from "../types/listingsResponse";
-import { WishListItem } from "../types/wishListItem";
-import wishListItemsData from "../wishListItemsData.json" assert { type: "json" };
+import { ListingsResponse } from '../types/listingsResponse';
+import { WishListItem } from '../types/wishListItem';
+import wishListItemsData from '../wishListItemsData';
 
 export function getDiscount(listing: ListingsResponse) {
   return formatNumber(
@@ -10,7 +10,7 @@ export function getDiscount(listing: ListingsResponse) {
 
 export function marketPriceFormatter(discount: number) {
   if (discount < 0) return `${Math.abs(discount)}% over market price`;
-  else if (discount == 0) return "market price";
+  else if (discount == 0) return 'market price';
   else return `${Math.abs(discount)}% under market price`;
 }
 

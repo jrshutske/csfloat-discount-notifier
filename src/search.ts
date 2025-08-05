@@ -1,15 +1,16 @@
-import ora from "ora";
-import axios, { AxiosResponse } from "axios";
-import notify from "./notifier";
-import { getDiscount } from "./data";
-import { csFloatUrl } from "./app";
-import { logFailure, logFiglet, logItem } from "./log";
-import { ListingsResponse, WishListItem } from "../types";
+import ora from 'ora';
+import axios, { AxiosResponse } from 'axios';
+import notify from './notifier';
+import { getDiscount } from './data';
+import { csFloatUrl } from './app';
+import { logFailure, logFiglet, logItem } from './log';
+import { ListingsResponse, WishListItem } from '../types';
 
 const spinner = ora();
 let requestsMade = 0;
 
 export default async function search(): Promise<void> {
+  console.log('hi');
   const startTime = new Date();
   spinner.stop();
 
@@ -37,7 +38,7 @@ export default async function search(): Promise<void> {
 }
 
 function wait() {
-  spinner.start("Waiting 10 minutes before retry...");
+  spinner.start('Waiting 10 minutes before retry...');
   setTimeout(() => search(), 6_00000);
 }
 
@@ -51,18 +52,22 @@ async function getListing(
 
 async function testConnection() {
   const url = `${csFloatUrl}/listings`;
-  return await axios.get(url);
+  return await axios.get(url, {
+    headers: {
+      Authorization: apiKey,
+    },
+  });
 }
 
 const getSearchParams = ({ def_index, paint_index }: WishListItem) => ({
   params: {
-    sort_by: "highest_discount",
-    type: "buy_now",
+    sort_by: 'highest_discount',
+    type: 'buy_now',
     def_index,
     paint_index,
     limit: 1,
   },
   headers: {
-    // Authorization: API_KEY,
+    Authorization: apiKey,
   },
 });
