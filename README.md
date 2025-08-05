@@ -43,9 +43,9 @@ A Node.js app that monitors discounts on specified CSFloat items and notifies yo
 4. Configure your wishlist items (see wishListItemsData.json)
 
 
-Create a .env file in the project root with your CSFloat API key:
+Run the notifier with:
 ```bash
-CSFLOAT_API_KEY=your_api_key_here
+yarn start
 ```
 
 #### The app will:
