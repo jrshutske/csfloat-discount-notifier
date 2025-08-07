@@ -1,13 +1,13 @@
-import chalk from "chalk";
-import figlet from "figlet";
-import { ListingsResponse } from "../types/listingsResponse";
-import { appID } from "./app";
+import chalk from 'chalk';
+import figlet from 'figlet';
+import { ListingsResponse } from '../types/listingsResponse';
+import { appID } from './app';
 import {
   marketPriceFormatter,
   getDiscount,
   getHistoricalAverage,
   getItemUrl,
-} from "./data";
+} from './data';
 
 export async function logFiglet(): Promise<void> {
   return new Promise(function (resolve, reject) {
@@ -43,7 +43,7 @@ function getAverageComparedDiscountMessage(
     return chalk.dim(`${averageCompared}% less than average`);
   }
 
-  return "";
+  return '';
 }
 
 function getDiscountMessage(listing: ListingsResponse, discount: number) {
@@ -55,12 +55,7 @@ function getDiscountMessage(listing: ListingsResponse, discount: number) {
   return discountMessage;
 }
 
-export function logFailure(
-  startTime: Date,
-  endTime: Date,
-  requestsMade: number
-) {
-  console.log("Start Time:", chalk.magenta(`${startTime}`));
-  console.log("End Time:", chalk.magenta(`${endTime}`));
-  console.log("Requests Made:", chalk.magenta(`${requestsMade}`));
+export function logFailure(startTime: Date, endTime: Date) {
+  console.log('Start Time:', chalk.magenta(`${startTime}`));
+  console.log('End Time:', chalk.magenta(`${endTime}`));
 }

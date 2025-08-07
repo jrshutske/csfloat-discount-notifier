@@ -2,52 +2,55 @@
 
 A Node.js app that monitors discounts on specified CSFloat items and notifies you via console messages and Windows toast notifications when discounts appear.
 
+<img src="media/toast.gif" width="100%" alt="toast gif"/>
+
 ## Features
 
-- Watches your wishlist items for discounts  
-- Logs discount details to the console  
-- Sends native Windows toast notifications for instant alerts  
-- Configurable with your wishlist data  
-- Easy to run with Yarn  
-- Securely stores API key using environment variables  
+- Watches your wishlist items for discounts
+- Logs discount details to the console
+- Sends native Windows toast notifications for instant alerts
+- Configurable with your wishlist data
+- Easy to run with Yarn
+- Securely stores API key using environment variables
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or later recommended)  
-- Yarn package manager  
-- Windows OS (for toast notifications)  
+- Node.js (v18 or later recommended)
+- Yarn package manager
+- Windows OS (for toast notifications)
 
 ### Installation
 
 1. Clone the repo
 
-    ```bash
-    git clone https://github.com/yourusername/csfloat-discount-notifier.git
-    cd csfloat-discount-notifier
-    ```
+   ```bash
+   git clone https://github.com/yourusername/csfloat-discount-notifier.git
+   cd csfloat-discount-notifier
+   ```
 
 2. Install Dependencies
 
-    ```bash
-    yarn install
-    ```
+   ```bash
+   yarn install
+   ```
 
 3. Create a .env file in the project root with your CSFloat API key:
 
-    ```bash
-    CSFLOAT_API_KEY=your_api_key_here
-    ```
+   ```bash
+   CSFLOAT_API_KEY=your_api_key_here
+   ```
 
 4. Configure your wishlist items (see wishListItemsData.json)
 
-
 Run the notifier with:
+
 ```bash
 yarn start
 ```
 
+<img src="media/teminal.png" width="100%" alt="terminal png"/>
 #### The app will:
 
 - Periodically check for discounts on your wishlist items
