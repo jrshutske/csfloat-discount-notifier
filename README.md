@@ -2,12 +2,13 @@
 
 A Node.js app that monitors discounts on specified CSFloat items and notifies you via console messages and Windows toast notifications when discounts appear.
 
-<div style="display: flex; height: 200px;">
-  <img src="media/teminal.png" style="width: 50%;" alt="terminal png" />
-  <img src="media/toast.gif" style="width: 50%;" alt="toast gif" />
-</div>
-
 ## Features
+
+<div style="display: flex; align-items: center;">
+  <div style="width: 50%;">
+    <img src="media/toast.gif" style="width: 100%;" alt="toast gif" />
+  </div>
+  <div style="width: 50%; padding-right: 20px;">
 
 - Watches your wishlist items for discounts
 - Logs discount details to the console
@@ -15,6 +16,9 @@ A Node.js app that monitors discounts on specified CSFloat items and notifies yo
 - Configurable with your wishlist data
 - Easy to run with Yarn
 - Securely stores API key using environment variables
+  </div>
+
+</div>
 
 ## Getting Started
 
@@ -52,6 +56,8 @@ Run the notifier with:
 ```bash
 yarn start
 ```
+
+<img src="media/teminal.png" style="width: 100%;" alt="terminal png" />
 
 #### The app will:
 
