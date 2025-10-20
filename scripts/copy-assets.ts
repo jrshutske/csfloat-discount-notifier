@@ -3,8 +3,12 @@
  * Copy configuration files to build directory for distribution
  */
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const BUILD_DIR = path.join(__dirname, "..", "build");
 const ROOT_DIR = path.join(__dirname, "..");
@@ -43,7 +47,7 @@ const readmeContent = `# CSFloat Discount Notifier
    \`\`\`
    CSFLOAT_API_KEY=your_api_key_here
    \`\`\`
-   Get your API key at: https://csfloat.com/profile
+   Get your API key at: https://csfloat.com/profile/api
 
 2. **Edit wishlist.json** - Add items you want to track:
    \`\`\`json
@@ -63,7 +67,7 @@ const readmeContent = `# CSFloat Discount Notifier
 
 ## Need Help?
 
-Visit: https://github.com/YOUR_USERNAME/csfloat-discount-notifier
+Visit: https://github.com/jrshutske/csfloat-discount-notifier
 
 ## Windows Defender Warning
 

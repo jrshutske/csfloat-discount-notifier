@@ -12,9 +12,9 @@
   "scripts": {
     "start": "node --require=suppress-experimental-warnings --loader ts-node/esm --experimental-specifier-resolution=node src/app.ts",
     "bundle": "esbuild src/app.ts --bundle --platform=node --target=node18 --format=cjs --outfile=dist-bundle/app.js --external:fsevents --define:import.meta.url='\"file://\"+__filename'",
-    "build:exe": "pnpm bundle && pkg dist-bundle/app.js --targets node18-win-x64 --output build/csfloat-notifier-win.exe && node scripts/copy-assets.cjs",
-    "build:exe:macos": "pnpm bundle && pkg dist-bundle/app.js --targets node18-macos-x64,node18-macos-arm64 --output build/csfloat-notifier-macos && node scripts/copy-assets.cjs",
-    "build:exe:linux": "pnpm bundle && pkg dist-bundle/app.js --targets node18-linux-x64 --output build/csfloat-notifier-linux && node scripts/copy-assets.cjs",
+    "build:exe": "pnpm bundle && pkg dist-bundle/app.js --targets node18-win-x64 --output build/csfloat-notifier-win.exe && node --require=suppress-experimental-warnings --loader ts-node/esm scripts/copy-assets.ts",
+    "build:exe:macos": "pnpm bundle && pkg dist-bundle/app.js --targets node18-macos-x64,node18-macos-arm64 --output build/csfloat-notifier-macos && node --require=suppress-experimental-warnings --loader ts-node/esm scripts/copy-assets.ts",
+    "build:exe:linux": "pnpm bundle && pkg dist-bundle/app.js --targets node18-linux-x64 --output build/csfloat-notifier-linux && node --require=suppress-experimental-warnings --loader ts-node/esm scripts/copy-assets.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
