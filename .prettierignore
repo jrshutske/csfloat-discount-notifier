@@ -11,4 +11,5 @@ coverage
 *.min.js
 *.d.ts
 *.exe
+LICENSE
 
