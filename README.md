@@ -1,6 +1,6 @@
 # 🎮 CSFloat Discount Notifier
 
-> Get instant desktop notifications when great deals appear on CSFloat
+> **Never miss a great deal again.** Automatically monitors CSFloat marketplace for your tracked items and sends instant desktop notifications when prices drop below market value. Perfect for CS2 traders looking to snag discounted skins and cases.
 
 ![Toast Notification Demo](media/toast.gif)
 
