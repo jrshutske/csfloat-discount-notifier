@@ -1,77 +1,193 @@
-# CSFloat Discount Notifier
+# 🎮 CSFloat Discount Notifier
 
-A Node.js app that monitors discounts on specified CSFloat items and notifies you via console messages and Windows toast notifications when discounts appear.
+> Automatically track CSFloat items and get instant notifications when discounts appear!
 
-## Features
+![Toast Notification Demo](media/toast.gif)
 
-- Watches your wishlist items for discounts
-- Logs discount details to the console
-- Sends native Windows toast notifications for instant alerts
-- Configurable with your wishlist data
-- Easy to run with Yarn
-- Securely stores API key using environment variables
+## ✨ Features
 
-<img src="media/toast.gif" width="400" alt="toast gif" />
+- 🔔 **Cross-Platform Notifications** - Native alerts on Windows, macOS, and Linux
+- 📊 **Smart Tracking** - Compares discounts to historical averages
+- 🎯 **One-Click Access** - Click notifications to open items in browser
+- 🎨 **Beautiful Console** - Color-coded terminal output
+- ⚡ **Lightweight** - Minimal resources, runs in background
 
-## Getting Started
+![Terminal Output](media/teminal.png)
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js (v18 or later recommended)
-- Yarn package manager
-- Windows OS (for toast notifications)
+- [Node.js](https://nodejs.org/) v18+
+- [pnpm](https://pnpm.io/installation) (install: `npm install -g pnpm`)
+- [CSFloat API Key](https://csfloat.com/profile)
 
 ### Installation
 
-1. Clone the repo
-
-   ```bash
-   git clone https://github.com/yourusername/csfloat-discount-notifier.git
-   cd csfloat-discount-notifier
-   ```
-
-2. Install Dependencies
-
-   ```bash
-   yarn install
-   ```
-
-3. Create a .env file in the project root with your CSFloat API key:
-
-   ```bash
-   CSFLOAT_API_KEY=your_api_key_here
-   ```
-
-4. Configure your wishlist items (see wishListItemsData.json)
-
-Run the notifier with:
-
 ```bash
-yarn start
+# Clone and navigate
+git clone https://github.com/yourusername/csfloat-discount-notifier.git
+cd csfloat-discount-notifier
+
+# Install dependencies
+pnpm install
+
+# Configure API key
+cp .env.example .env
+# Edit .env and add: CSFLOAT_API_KEY=your_key_here
+
+# Run
+pnpm start
 ```
 
-<img src="media/teminal.png" style="width: 100%;" alt="terminal png" />
+## ⚙️ Configuration
 
-#### The app will:
+### Tracking Items
 
-- Periodically check for discounts on your wishlist items
+Edit `wishlist.json` in the project root:
 
-- Output discount info in the console
+```json
+[
+  { "name": "Chroma 2 Case", "def_index": 4089 },
+  { "name": "AK-47 Redline", "def_index": 7, "paint_index": 282 }
+]
+```
 
-- Show toast notifications on Windows when discounts are found
+> 💡 **Tip:** Find `def_index` and `paint_index` values on [CSFloat](https://csfloat.com) item URLs
 
-#### Configuration
+### Change Polling Interval
 
-- Add or edit your wishlist items in wishListItemsData.json
+Default: 10 minutes. Edit in `src/search.ts`:
 
-- Update other settings like polling intervals in config files (if applicable)
+```typescript
+setTimeout(() => search(), 600000); // milliseconds
+```
 
-- The app loads your API key from the .env file automatically via dotenv
+## 📦 Commands
 
-#### Troubleshooting
+| Command                | Description                       |
+| ---------------------- | --------------------------------- |
+| `pnpm start`           | Run the notifier                  |
+| `pnpm build:exe`       | Build Windows executable          |
+| `pnpm build:exe:macos` | Build macOS executables (on Mac)  |
+| `pnpm build:exe:linux` | Build Linux executable (on Linux) |
+| `pnpm format`          | Format code with Prettier         |
 
-- Ensure you are running on Windows for toast notifications to work
+## 🏗️ Building Executables
 
-- Verify your .env file exists and the API key is correct
+Create standalone executables that run without Node.js:
 
-- Check console logs for detailed error messages
+```bash
+# Windows (on Windows)
+pnpm build:exe
+
+# macOS (on macOS)
+pnpm build:exe:macos
+
+# Linux (on Linux)
+pnpm build:exe:linux
+```
+
+> **Note:** Due to `pkg` limitations, you must build on the target platform (e.g., build macOS executables on a Mac).
+
+Executables appear in `build/` folder. To distribute:
+
+1. Copy the executable
+2. Copy `wishlist.json` (your tracked items)
+3. Create `.env` file with your API key
+4. Run it!
+
+**Note:** The icon is bundled into the executable - no need to copy it separately!
+
+> ⚠️ **Windows Defender Warning:** Executables created with `pkg` commonly trigger false positives (Trojan:Win32/Wacatac). This is a known issue with all pkg-based tools. Your options:
+>
+> - **Recommended:** Run with Node.js installed (use `pnpm start` - no false positives)
+> - Add the executable to Windows Defender exclusions
+> - Code sign the executable (requires purchasing a certificate)
+
+<details>
+<summary>📋 Advanced Build Options</summary>
+
+### Custom Build Targets
+
+Edit `package.json` to customize:
+
+```json
+"build:exe": "pnpm build && pkg dist/src/app.js --targets node18-win-x64 --output build/app.exe --compress GZip"
+```
+
+**Available targets:**
+
+- `node18-win-x64` - Windows
+- `node18-linux-x64` - Linux
+- `node18-macos-x64` - macOS Intel
+- `node18-macos-arm64` - macOS Apple Silicon
+
+</details>
+
+## 🐛 Troubleshooting
+
+<details>
+<summary>No notifications appearing</summary>
+
+**Windows:**
+
+- Enable notifications: Settings > System > Notifications
+
+**macOS:**
+
+- Check System Preferences > Notifications
+- Disable "Do Not Disturb"
+
+**Linux:**
+
+- Install libnotify: `sudo apt-get install libnotify-bin`
+- Test: `notify-send "Test" "Hello"`
+
+</details>
+
+<details>
+<summary>API errors</summary>
+
+- Verify `.env` file exists with valid API key
+- Check you haven't exceeded rate limits
+- Get a new key at [CSFloat API](https://csfloat.com/profile)
+
+</details>
+
+<details>
+<summary>pnpm issues</summary>
+
+**"pnpm: command not found"**
+
+```bash
+npm install -g pnpm
+# or use corepack
+corepack enable
+```
+
+**Dependency errors**
+
+```bash
+pnpm store prune
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+```
+
+</details>
+
+## 🛠️ Tech Stack
+
+TypeScript • Node.js • Axios • node-notifier • Chalk • Ora • Figlet • pkg • Prettier
+
+## 📄 License
+
+ISC License
+
+## ⚠️ Disclaimer
+
+Not affiliated with CSFloat. Use responsibly and respect API rate limits.
+
+---
+
+**Happy deal hunting!** 🎯

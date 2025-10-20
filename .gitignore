@@ -1,4 +1,36 @@
-node_modules
-yarn-error.log
-.git
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+dist-bundle/
+build/
+*.exe
+
+# Environment
 .env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo

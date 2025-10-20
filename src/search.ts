@@ -1,8 +1,8 @@
-import ora from 'ora';
-import notify from './notifier';
-import { getDiscount } from './data';
-import { logFailure, logFiglet, logItem } from './log';
-import { listingsService } from './services/listings.service';
+import ora from "ora";
+import notify from "./notifier";
+import { getDiscount } from "./data";
+import { logFailure, logFiglet, logItem } from "./log";
+import { listingsService } from "./services/listings.service";
 
 const spinner = ora();
 
@@ -18,7 +18,7 @@ export default async function search(): Promise<void> {
       wishListItems.map((item) => listingsService.getListing(item))
     );
 
-    responses.map((response) => {
+    responses.forEach((response) => {
       const listing = response[0];
       logItem(listing);
       const discount = getDiscount(listing);
@@ -34,6 +34,6 @@ export default async function search(): Promise<void> {
 }
 
 function wait() {
-  spinner.start('Waiting 10 minutes before retry...');
-  setTimeout(() => search(), 6_00000);
+  spinner.start("Waiting 10 minutes before retry...");
+  setTimeout(() => search(), 600000);
 }

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ES2022",
+    "module": "ES2022",
     "moduleResolution": "node",
     "allowJs": true,
     "esModuleInterop": true,
@@ -15,27 +15,16 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
-    "noUnusedLocals": true ,
+    "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true ,
+    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "importHelpers": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "types": [
-      "node",
-    ],
-    "lib": [
-      "ES6",
-      "DOM"
-    ]
+    "types": ["node"],
+    "lib": ["ES2022"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-  ],
-  "exclude": [
-    "node_modules",
-    ".vscode"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", ".vscode"]
 }

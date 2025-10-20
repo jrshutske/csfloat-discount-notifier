@@ -1,6 +1,6 @@
-import { ListingsResponse, WishListItem } from '../../types';
-import { csFloatUrl } from '../app';
-import { genericService } from './generic.service';
+import { ListingsResponse, WishListItem } from "../../types";
+import { csFloatUrl } from "../app";
+import { genericService } from "./generic.service";
 
 export const listingsService = {
   getListing,
@@ -14,8 +14,8 @@ async function getListing(item: WishListItem): Promise<ListingsResponse[]> {
 
 const getSearchParams = ({ def_index, paint_index }: WishListItem) => ({
   params: {
-    sort_by: 'highest_discount',
-    type: 'buy_now',
+    sort_by: "highest_discount",
+    type: "buy_now",
     def_index,
     paint_index,
     limit: 1,

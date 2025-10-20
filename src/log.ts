@@ -1,24 +1,19 @@
-import chalk from 'chalk';
-import figlet from 'figlet';
-import { ListingsResponse } from '../types/listingsResponse';
-import { appID } from './app';
+import chalk from "chalk";
+import { ListingsResponse } from "../types/listingsResponse";
 import {
   marketPriceFormatter,
   getDiscount,
   getHistoricalAverage,
   getItemUrl,
-} from './data';
+} from "./data";
 
 export async function logFiglet(): Promise<void> {
-  return new Promise(function (resolve, reject) {
-    figlet(appID, (err, result) => {
-      if (err) {
-        return reject(err);
-      }
-      if (result) console.log(chalk.yellow(result));
-      resolve();
-    });
-  });
+  // Simple banner without figlet dependency
+  console.log(chalk.yellow.bold("\n"));
+  console.log(chalk.yellow.bold("╔════════════════════════════════════╗"));
+  console.log(chalk.yellow.bold(`║    CSFLOAT - DISCOUNT NOTIFIER     ║`));
+  console.log(chalk.yellow.bold("╚════════════════════════════════════╝"));
+  console.log(chalk.yellow.bold("\n"));
 }
 
 export function logItem(listing: ListingsResponse) {
@@ -43,19 +38,19 @@ function getAverageComparedDiscountMessage(
     return chalk.dim(`${averageCompared}% less than average`);
   }
 
-  return '';
+  return "";
 }
 
 function getDiscountMessage(listing: ListingsResponse, discount: number) {
   const link = getItemUrl(listing);
   let discountMessage = marketPriceFormatter(discount);
   if (discount < 0) discountMessage = chalk.yellow(discountMessage);
-  else if (discount == 0) discountMessage = chalk.green(discountMessage, link);
+  else if (discount === 0) discountMessage = chalk.green(discountMessage, link);
   else discountMessage = chalk.magenta(discountMessage, link);
   return discountMessage;
 }
 
 export function logFailure(startTime: Date, endTime: Date) {
-  console.log('Start Time:', chalk.magenta(`${startTime}`));
-  console.log('End Time:', chalk.magenta(`${endTime}`));
+  console.log("Start Time:", chalk.magenta(`${startTime}`));
+  console.log("End Time:", chalk.magenta(`${endTime}`));
 }

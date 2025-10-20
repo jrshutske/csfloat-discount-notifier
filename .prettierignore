@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-bundle
+build
+*.lock
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+.git
+coverage
+*.min.js
+*.d.ts
+*.exe
+
